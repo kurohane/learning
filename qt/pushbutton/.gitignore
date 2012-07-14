@@ -1,0 +1,7 @@
+pushbutton
+Makefile
+*.o
+qrc_*.cpp
+moc_*.cpp
+ui_*.h
+*.pro.user

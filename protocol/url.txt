@@ -1,0 +1,11 @@
+RFC IETF
+ http://datatracker.ietf.org/
+
+html5
+ http://dev.w3.org/html5/spec/
+
+SPDY
+ http://dev.chromium.org/spdy/spdy-protocol
+
+UPnP
+ http://www.upnp.org/
