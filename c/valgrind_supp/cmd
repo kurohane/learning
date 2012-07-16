@@ -1,0 +1,1 @@
+valgrind --leak-check=full --gen-suppressions=all ./test 2> test.supp
