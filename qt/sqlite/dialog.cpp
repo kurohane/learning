@@ -12,7 +12,7 @@ Dialog::Dialog(QWidget *parent) :
         qDebug("db open error");
     }
 
-    QSqlQuery query("CREATE table test1(key, value)");
+    QSqlQuery query("create table test1(key, value)");
     QSqlError err = query.lastError();
     qDebug() << err;
 
@@ -25,37 +25,19 @@ Dialog::~Dialog()
 
 void Dialog::on_pushButton_clicked()
 {
-//    QSqlQuery query("insert into test1 values('" + ui->lineEdit->text() + "', '" + ui->lineEdit_2->text() + "')");
-    QSqlQuery query;
-    query.prepare("insert into test1 (key, value) values(?, ?)");
-    query.bindValue(0, ui->lineEdit->text());
-    query.bindValue(1, ui->lineEdit_2->text());
-    query.exec();
-
-    QSqlError err = query.lastError();
-    qDebug() << err;
+    insert(ui->lineEdit->text(), ui->lineEdit_2->text());
 }
 
 void Dialog::on_pushButton_2_clicked()
 {
-//    QString str = "update test1 set value = '" + ui->lineEdit_4->text() + "' where key = '" + ui->lineEdit_3->text() + "'";
-//    qDebug() << str;
-//    QSqlQuery query(str);
-    QSqlQuery query;
-    query.prepare("update test1 set value = ? where key = ?");
-    query.bindValue(0, ui->lineEdit_4->text());
-    query.bindValue(1, ui->lineEdit_3->text());
-    query.exec();
-
-    QSqlError err = query.lastError();
-    qDebug() << err;
+    update(ui->lineEdit_3->text(), ui->lineEdit_4->text());
 }
 
 void Dialog::on_pushButton_3_clicked()
 {
     ui->plainTextEdit->clear();
     QSqlError err;
-    QSqlQuery query("SELECT * from test1");
+    QSqlQuery query("select * from test1");
     err = query.lastError();
     qDebug() << err;
 
@@ -74,4 +56,65 @@ void Dialog::on_pushButton_5_clicked()
     QSqlError err = query.lastError();
     qDebug() << err;
 
+}
+
+void Dialog::on_pushButton_6_clicked()
+{
+    QSqlQuery query;
+    query.prepare("select * from test1 where key = ?");
+    query.bindValue(0, ui->lineEdit_6->text());
+    query.exec();
+    QSqlError err = query.lastError();
+    qDebug() << err;
+
+    if (query.next()) {
+        qDebug("update");
+        update(ui->lineEdit_6->text(), ui->lineEdit_7->text());
+    } else {
+        qDebug("insert");
+        insert(ui->lineEdit_6->text(), ui->lineEdit_7->text());
+    }
+
+//    QSqlQuery query;
+//    query.prepare("insert or replace into test1 (key, value) values(?, ?)");
+//    query.bindValue(0, ui->lineEdit_6->text());
+//    query.bindValue(1, ui->lineEdit_7->text());
+//    query.exec();
+
+//    QSqlError err = query.lastError();
+//    qDebug() << err;
+
+}
+
+void Dialog::update(QString key, QString val)
+{
+//    QString str = "update test1 set value = '" + ui->lineEdit_4->text() + "' where key = '" + ui->lineEdit_3->text() + "'";
+//    qDebug() << str;
+//    QSqlQuery query(str);
+    QSqlQuery query;
+    query.prepare("update test1 set value = ? where key = ?");
+    query.bindValue(0, val);
+    query.bindValue(1, key);
+    query.exec();
+
+    QSqlError err = query.lastError();
+    qDebug() << err;
+}
+
+void Dialog::insert(QString key, QString val)
+{
+//    QSqlQuery query("insert into test1 values('" + ui->lineEdit->text() + "', '" + ui->lineEdit_2->text() + "')");
+    QSqlQuery query;
+    query.prepare("insert into test1 (key, value) values(?, ?)");
+    query.bindValue(0, key);
+    query.bindValue(1, val);
+    query.exec();
+
+    QSqlError err = query.lastError();
+    qDebug() << err;
+}
+
+void Dialog::on_pushButton_7_clicked()
+{
+    QSqlQuery query("delete from test1");
 }

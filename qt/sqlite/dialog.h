@@ -25,9 +25,16 @@ private slots:
 
     void on_pushButton_5_clicked();
 
+    void on_pushButton_6_clicked();
+
+    void on_pushButton_7_clicked();
+
 private:
     Ui::Dialog *ui;
     QSqlDatabase db;
+
+    void update(QString key, QString val);
+    void insert(QString key, QString val);
 };
 
 #endif // DIALOG_H
