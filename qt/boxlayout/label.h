@@ -10,7 +10,8 @@ class Label : public QLabel
 public:
     explicit Label(QString name, QWidget *parent = 0);
     virtual ~Label();
-    
+    QString getName();
+
 signals:
     
 public slots:

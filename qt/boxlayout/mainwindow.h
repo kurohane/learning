@@ -10,10 +10,11 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-    
+    QString name;
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(QString name, QWidget *parent = 0);
     ~MainWindow();
+    QString getName();
     
 private:
     Ui::MainWindow *ui;

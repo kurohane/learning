@@ -10,7 +10,8 @@ class HBox : public QHBoxLayout
 public:
     explicit HBox(QString name, QWidget *parent = 0);
     virtual ~HBox();
-    
+    QString getName();
+
 signals:
     
 public slots:
