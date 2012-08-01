@@ -1,0 +1,10 @@
+cv
+Makefile
+my.db
+*.o
+qrc_*.cpp
+moc_*.cpp
+ui_*.h
+*.pro.user*
+*.jpg
+*.png
